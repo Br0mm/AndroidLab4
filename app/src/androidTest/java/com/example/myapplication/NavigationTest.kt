@@ -153,12 +153,19 @@ class NavigationTest {
         activityScenario.recreate()
         Espresso.onView(ViewMatchers.withId(R.id.fragment2))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.pressBack()
+        Espresso.onView(ViewMatchers.withId(R.id.fragment1))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
+        Espresso.onView(ViewMatchers.withId(R.id.bnToSecond)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.bnToThird)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.fragment3))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         activityScenario.recreate()
         Espresso.onView(ViewMatchers.withId(R.id.fragment3))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.pressBack()
+        Espresso.onView(ViewMatchers.withId(R.id.fragment2))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
         openAbout()
@@ -168,6 +175,9 @@ class NavigationTest {
             activity.recreate()
         }
         Espresso.onView(ViewMatchers.withId(R.id.activity_about))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.pressBack()
+        Espresso.onView(ViewMatchers.withId(R.id.fragment2))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
